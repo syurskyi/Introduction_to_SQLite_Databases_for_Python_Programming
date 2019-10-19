@@ -7,14 +7,20 @@ conn = sqlite3.connect('customer.db')
 # Create a cursor
 c = conn.cursor()
 
+# Update Records
+
+c.execute("""UPDATE customers SET first_name = 'John'
+             WHERE last_name = 'Elder'
+    """)
+conn.commit()
+
 # Query The Database
-# c.execute("SELECT * FROM customers WHERE last_name LIKE 'Br%'")
-c.execute("SELECT * FROM customers WHERE email LIKE '%codemy.com' ")
+c.execute("SELECT rowid, * FROM customers")
+
 items = c.fetchall()
 
 for item in items:
     print(item)
-
 
 # Commit our command
 conn.commit()
