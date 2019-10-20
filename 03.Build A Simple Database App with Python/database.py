@@ -5,7 +5,6 @@ import sqlite3
 
 def show_all():
     # connect to database
-
     conn = sqlite3.connect('customer.db')
 
     # Create a cursor
@@ -23,4 +22,14 @@ def show_all():
     conn.commit()
 
     # Close our connection
+    conn.close()
+
+# Add a New Record to the Table
+
+
+def add_one(first, last, email):
+    conn = sqlite3.connect('customer.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO customers VALUES (?, ?, ?)", (first, last, email))
+    conn.commit()
     conn.close()
