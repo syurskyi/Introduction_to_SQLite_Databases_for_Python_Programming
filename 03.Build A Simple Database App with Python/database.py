@@ -33,6 +33,16 @@ def add_one(first, last, email):
     conn.commit()
     conn.close()
 
+
+# Add Many Records to Table
+def add_many(list):
+    conn = sqlite3.connect('customer.db')
+    c = conn.cursor()
+    c.executemany("INSERT INTO customers VALUES (?, ?, ?)", (list))
+    conn.commit()
+    conn.close()
+
+
 # Delete Record from the table
 def delete_one(id):
     conn = sqlite3.connect('customer.db')
