@@ -50,3 +50,15 @@ def delete_one(id):
     c.execute("DELETE from customers WHERE rowid = (?)", id)
     conn.commit()
     conn.close()
+
+
+# Lookup with Where
+def email_lookup(email):
+    conn = sqlite3.connect('customer.db')
+    c = conn.cursor()
+    c.execute('SELECT * from customers WHERE email = (?)', (email,))
+    items = c.fetchall()
+    for item in items:
+        print(item)
+    conn.commit()
+    conn.close()
